@@ -7,6 +7,7 @@ class Romanos(object):
         'D': 500,
         'CD': 400,
         'C': 100,
+        'XC': 90,
         'L': 50,
         'XL':40,
         'X': 10,
@@ -20,7 +21,7 @@ class Romanos(object):
     def to_roman(self, num):
         result = ''
         if num > 1000 or num <= 0:
-            raise ValueError('El número debe estar dentro del rango 1-1000')
+            raise ValueError('El numero debe estar dentro del rango 1-1000')
 
         for i, k in self.decimal.items():
             while num % i < num:
@@ -29,18 +30,7 @@ class Romanos(object):
 
         return result
 
-    def validate_result(self,result):
-        max_3 = ['I', 'X', 'C', 'M']
-        max_1 = ['V', 'L', 'D']
-        for i in max_3:
-            if result.count(i) > 3:
-                raise ValueError('el numero {0} solo puede repetirse 3 veces'.format(i))
 
-        for i in max_1:
-            if result.count(i) >1:
-                raise ValueError('el numero {0} solo puede repetirse 1 vez'.format(i))
-
-        return result
 
 
 
@@ -57,7 +47,7 @@ while cancel == 'n':
     try:
         romanos = Romanos()
         result = romanos.to_roman(int(number))
-        print(romanos.validate_result(result))
+        print(result)
 
     except ValueError as error:
         print(error.args[0])
